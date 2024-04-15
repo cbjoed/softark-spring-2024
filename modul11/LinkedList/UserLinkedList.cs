@@ -24,33 +24,41 @@
         public User RemoveFirst()
         {
             // TODO: Implement!
-            return null!;
+            if (first == null)
+            {
+                return null!;
+            }
+
+            User user = first.Data;
+                first = first.Next;
+                return user;
+           
         }
 
         public void RemoveUser(User user)
         {
-            Node node = first;
+            Node current = first;
             Node previous = null!;
             bool found = false;
 
-            while (!found && node != null)
+            while (!found && current != null)
             {
-                if (node.Data.Name == user.Name)
+                if (current.Data.Name == user.Name)
                 {
                     found = true;
-                    if (node == first)
+                    if (current == first)
                     {
                         RemoveFirst();
                     }
                     else
                     {
-                        previous.Next = node.Next;
+                        previous.Next = current.Next;
                     }
                 }
                 else
                 {
-                    previous = node;
-                    node = node.Next;
+                    previous = current;
+                    current = current.Next;
                 }
             }
         }
@@ -62,14 +70,28 @@
 
         public User GetLast()
         {
-            // TODO: Implement
-            return null!;
+        
+        Node current = first;
+            while (current.Next != null)
+            {
+                
+                current = current.Next;
+                
+            }
+            return current.Data;
         }
 
         public int CountUsers()
         {
-            // TODO: Implement
-            return -1;
+            int count = 0;
+            Node current = first;
+            while (current != null)
+            {
+                count++;
+                current = current.Next;
+                
+            }
+            return count;
         }
 
         public override String ToString()
@@ -82,6 +104,27 @@
                 node = node.Next;
             }
             return result.Trim();
+        }
+        public bool Contains(User user)
+
+        {
+            Node nextNode = first;
+
+            if (first == null)
+            {
+                return false;
+            }
+            while (nextNode != null)
+            {
+                if (nextNode.Data.Name == user.Name)
+                {
+                    return true;
+                }
+                nextNode = nextNode.Next;
+
+
+            }
+            return false;
         }
     }
 }

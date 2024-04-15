@@ -22,3 +22,8 @@ list.RemoveFirst();
 
 Console.WriteLine(list.CountUsers());
 Console.WriteLine(list);
+
+Console.WriteLine(list.GetLast().Name);
+
+Console.WriteLine(list.Contains(kristian));
+
